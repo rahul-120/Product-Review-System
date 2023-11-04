@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rankings</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+  </head>
+  <body>
+        <div id="header">
+	        <nav class="navbar navbar-expand-md fixed-top" style="margin-bottom: 2px;">
+		<div class="navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav" style="text-shadow: 0 16px 24px -12px rgba(0,0,0 ,0.15);">
+				<li class="nav-item">
+					<a class="nav-link active"  aria-current="page" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/">Shop</a>
+				</li>
+			</ul>
+			<div class="navbar-brand d-none d-lg-block">
+				<a href="/"><h2 class="logo center-logo"><strong>Scoutlab</strong></h2></a>
+			</div>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Blog</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/">About us</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+            <div class="" style="width:100%;  height:68px; display:block; box-shadow: 0 16px 24px -12px rgba(0,0,0 ,0.15); padding:0px; margin: 0px;"></div>
+        </div>
+        <div class="container ">
+            <div class="mt-4">
+                <div class="form-box  ">
+                  <h1 class="text-center coral-theme" >Share your review</h1><br>
+                  <form action="/user_opinions" method="post">
+                    <div class="form-group">
+                      <label for="name" class="coral-theme">Product Name</label>
+                      <input class="form-control form-focus" id="name" type="text" name="Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="rating" class="coral-theme">Rating</label>
+                      <input class="form-control form-focus" id="rating" type="number" name="rating">
+                    </div>
+                    <div class="form-group">
+                      <label for="Review" class="coral-theme">Review</label>
+                      <textarea class="form-control form-focus" id="Review" name="Review"></textarea>
+                    </div><div>
+                        <input class="btn coral-bg  text-light" type="submit" value="Submit" />
+                    </div>
+                  </form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
+        <script type="text/javascript">
+        // ---------Responsive-navbar-active-animation-----------
+        function test(){
+            var tabsNewAnim = $('#navbarSupportedContent');
+            var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+            var activeItemNewAnim = tabsNewAnim.find('.active');
+            var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+            var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+            var itemPosNewAnimTop = activeItemNewAnim.position();
+            var itemPosNewAnimLeft = activeItemNewAnim.position();
+            $(".hori-selector").css({
+                "top":itemPosNewAnimTop.top + "px",
+                "left":itemPosNewAnimLeft.left + "px",
+                "height": activeWidthNewAnimHeight + "px",
+                "width": activeWidthNewAnimWidth + "px"
+            });
+            $("#navbarSupportedContent").on("click","li",function(e){
+                $('#navbarSupportedContent ul li').removeClass("active");
+                $(this).addClass('active');
+                var activeWidthNewAnimHeight = $(this).innerHeight();
+                var activeWidthNewAnimWidth = $(this).innerWidth();
+                var itemPosNewAnimTop = $(this).position();
+                var itemPosNewAnimLeft = $(this).position();
+                $(".hori-selector").css({
+                    "top":itemPosNewAnimTop.top + "px",
+                    "left":itemPosNewAnimLeft.left + "px",
+                    "height": activeWidthNewAnimHeight + "px",
+                    "width": activeWidthNewAnimWidth + "px"
+                });
+            });
+        }
+        $(document).ready(function(){
+            setTimeout(function(){ test(); });
+        });
+        $(window).on('resize', function(){
+            setTimeout(function(){ test(); }, 500);
+        });
+        $(".navbar-toggler").click(function(){
+            $(".navbar-collapse").slideToggle(300);
+            setTimeout(function(){ test(); });
+        });
+
+
+
+        // --------------add active class-on another-page move----------
+        jQuery(document).ready(function($){
+            // Get current path and find target link
+            var path = window.location.pathname.split("/").pop();
+
+            // Account for home page with empty path
+            if ( path == '' ) {
+                path = 'index.html';
+            }
+
+            var target = $('#navbarSupportedContent ul li a[href="'+path+'"]');
+            // Add active class to target link
+            target.parent().addClass('active');
+        });
+
+    </script>
+  </body>
+</html>
